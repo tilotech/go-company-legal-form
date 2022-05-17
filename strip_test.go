@@ -44,6 +44,16 @@ func TestStrip(t *testing.T) {
 			expectedCompanyName: "Some Example",
 			expectedLegalForm:   "S. A. de C. V., F. I. en I. D.",
 		},
+		{
+			input:               "Example",
+			expectedCompanyName: "Example",
+			expectedLegalForm:   "",
+		},
+		{
+			input:               "",
+			expectedCompanyName: "",
+			expectedLegalForm:   "",
+		},
 	}
 
 	for i, c := range cases {
