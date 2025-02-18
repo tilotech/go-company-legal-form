@@ -76,4 +76,4 @@ run:
 
 service:
   # use the fixed version to not introduce new linters unexpectedly
-  golangci-lint-version: 1.43.x
+  golangci-lint-version: 1.54.x
