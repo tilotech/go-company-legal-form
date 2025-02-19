@@ -33,7 +33,7 @@ var DefaultAliases = Aliases{
 	"*": map[string]string{
 		"limited":      "ltd",
 		"incorporated": "inc",
-		"corp":         "corp",
+		"corporation":  "corp",
 	},
 	"AT": map[string]string{
 		"gesmbh":                             "gmbh",
