@@ -34,6 +34,7 @@ var DefaultAliases = Aliases{
 		"limited":      "ltd",
 		"incorporated": "inc",
 		"corporation":  "corp",
+		"company":      "co",
 	},
 	"AT": map[string]string{
 		"gesmbh":                             "gmbh",
@@ -280,7 +281,18 @@ var DefaultAliases = Aliases{
 		"limitedpartnership": "lp",
 	},
 	"AE": map[string]string{
-		"rakeconomiczonecompany": "fzllc",
+		"rakeconomiczonecompany":   "fzllc",
+		"soleproprietorship":       "sp",
+		"civilcompany":             "cc",
+		"limitedliabilitycompany":  "llc",
+		"generalpartnership":       "gp",
+		"limitedpartnership":       "lp",
+		"publicjointstockcompany":  "pjsc",
+		"privatejointstockcompany": "prjsc",
+		"branchofaforeigncompany":  "bf",
+		"representativeoffice":     "bro",
+		"freezoneestablishment":    "fze",
+		"freezonecompany":          "fzc",
 	},
 	"VG": map[string]string{
 		"incorporated":       "inc",

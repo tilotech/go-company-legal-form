@@ -1403,4 +1403,12 @@ var Default = LegalForms{
 	"pk":                                           struct{}{},
 	"enkeltpersonforetak":                          struct{}{},
 	"szövetségkivévesportszövetség":                struct{}{},
+	"soleproprietorship":                           struct{}{},
+	"civilcompany":                                 struct{}{},
+	"publicjointstockcompany":                      struct{}{},
+	"privatejointstockcompany":                     struct{}{},
+	"branchofaforeigncompany":                      struct{}{},
+	"representativeoffice":                         struct{}{},
+	"freezoneestablishment":                        struct{}{},
+	"freezonecompany":                              struct{}{},
 }
