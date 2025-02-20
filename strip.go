@@ -32,10 +32,9 @@ func (f LegalForms) Strip(fullName string) (string, string) {
 // StripMiddle strips the legal form from anywhere in the full company name and
 // returns the name as well as the legal form.
 //
-// By default everything after the found legal form will be dropped. If
-// keepPostLegalForm is true, then the part after the legal form will be added
-// to the company name.
-func (f LegalForms) StripMiddle(fullName string, keepPostLegalForm bool) (string, string) {
+// If the legal form was not at the end, then everything after the legal form
+// will be returned as the third response value.
+func (f LegalForms) StripMiddle(fullName string) (string, string, string) {
 	tokens := strings.Fields(fullName)
 	cleanTokens := make([]string, len(tokens))
 
@@ -62,14 +61,15 @@ func (f LegalForms) StripMiddle(fullName string, keepPostLegalForm bool) (string
 		foundLegalForm := legalFormTokenStart <= i
 		if foundLegalForm {
 			company := strings.Join(tokens[0:legalFormTokenStart], " ")
-			if keepPostLegalForm && obsoleteTokenLength > 0 {
-				company += " " + strings.Join(tokens[i+1:], " ")
-			}
 			legalForm := strings.Join(tokens[legalFormTokenStart:searchEndIdx], " ")
-			return company, legalForm
+			other := ""
+			if obsoleteTokenLength > 0 {
+				other = strings.Join(tokens[i+1:], " ")
+			}
+			return company, legalForm, other
 		}
 	}
-	return strings.Join(tokens, " "), ""
+	return strings.Join(tokens, " "), "", ""
 }
 
 func clean(s string) string {

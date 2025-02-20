@@ -93,9 +93,9 @@ func TestStrip(t *testing.T) {
 func TestStripMiddle(t *testing.T) {
 	cases := []struct {
 		input               string
-		keepPostLegalForm   bool
 		expectedCompanyName string
 		expectedLegalForm   string
+		expectedOther       string
 	}{
 		{
 			input:               "Example LLC",
@@ -134,39 +134,21 @@ func TestStripMiddle(t *testing.T) {
 		},
 		{
 			input:               "Example GmbH (Foobar)",
-			keepPostLegalForm:   false,
 			expectedCompanyName: "Example",
 			expectedLegalForm:   "GmbH",
-		},
-		{
-			input:               "Example GmbH (Foobar)",
-			keepPostLegalForm:   true,
-			expectedCompanyName: "Example (Foobar)",
-			expectedLegalForm:   "GmbH",
+			expectedOther:       "(Foobar)",
 		},
 		{
 			input:               "Example GmbH & Co. KG Foobar",
-			keepPostLegalForm:   false,
 			expectedCompanyName: "Example",
 			expectedLegalForm:   "GmbH & Co. KG",
-		},
-		{
-			input:               "Example GmbH & Co. KG Foobar",
-			keepPostLegalForm:   true,
-			expectedCompanyName: "Example Foobar",
-			expectedLegalForm:   "GmbH & Co. KG",
+			expectedOther:       "Foobar",
 		},
 		{
 			input:               "Example LLC GmbH & Co. KG Some Street Name No 1",
-			keepPostLegalForm:   false,
 			expectedCompanyName: "Example LLC",
 			expectedLegalForm:   "GmbH & Co. KG",
-		},
-		{
-			input:               "Example LLC GmbH & Co. KG Some Street Name No 1",
-			keepPostLegalForm:   true,
-			expectedCompanyName: "Example LLC Some Street Name No 1",
-			expectedLegalForm:   "GmbH & Co. KG",
+			expectedOther:       "Some Street Name No 1",
 		},
 		{
 			input:               "LLC Example",
@@ -182,9 +164,10 @@ func TestStripMiddle(t *testing.T) {
 
 	for i, c := range cases {
 		t.Run(fmt.Sprintf("#%v", i), func(t *testing.T) {
-			actualCompany, actualLegalForm := legalform.Default.StripMiddle(c.input, c.keepPostLegalForm)
+			actualCompany, actualLegalForm, actualOther := legalform.Default.StripMiddle(c.input)
 			assert.Equal(t, c.expectedCompanyName, actualCompany)
 			assert.Equal(t, c.expectedLegalForm, actualLegalForm)
+			assert.Equal(t, c.expectedOther, actualOther)
 		})
 	}
 }
@@ -199,6 +182,6 @@ func BenchmarkStrip(b *testing.B) {
 func BenchmarkStripMiddle(b *testing.B) {
 	input := "Example LLC GmbH & Co. KG Some Street Name No 1"
 	for i := 0; i < b.N; i++ {
-		_, _ = legalform.Default.StripMiddle(input, false)
+		_, _, _ = legalform.Default.StripMiddle(input)
 	}
 }
