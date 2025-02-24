@@ -223,10 +223,7 @@ func TestStripThenAlias(t *testing.T) {
 	for i, c := range cases {
 		t.Run(fmt.Sprintf("#%v", i), func(t *testing.T) {
 			actualCompany, actualLegalForm := legalform.Default.Strip(c.input)
-			actualAliasLegalForm := legalform.DefaultAliases.Find("TH", actualLegalForm)
-			fmt.Println(c.input)
-			fmt.Println(actualCompany, "-", actualLegalForm, "-", actualAliasLegalForm)
-			fmt.Println(c.expectedCompanyName, "-", c.expectedLegalForm, "-", c.expectedAliasLegalForm)
+			actualAliasLegalForm := legalform.DefaultAliases.Find("UNKNOWN", actualLegalForm)
 			assert.Equal(t, c.expectedCompanyName, actualCompany)
 			assert.Equal(t, c.expectedLegalForm, actualLegalForm)
 			assert.Equal(t, c.expectedAliasLegalForm, actualAliasLegalForm)

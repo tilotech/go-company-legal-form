@@ -36,7 +36,6 @@ var DefaultAliases = Aliases{
 		"corporation":          "corp",
 		"company":              "co",
 		"publiclimitedcompany": "plc",
-		"publimitedcompany":    "plc",
 		"pvtlimited":           "pvtltd",
 		"privatelimited":       "pvtltd",
 		"privateltd":           "pvtltd",
