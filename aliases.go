@@ -31,10 +31,16 @@ func (l Aliases) Find(country, legalForm string) string {
 // DefaultAliases is a list of country specific legal form aliases.
 var DefaultAliases = Aliases{
 	"*": map[string]string{
-		"limited":      "ltd",
-		"incorporated": "inc",
-		"corporation":  "corp",
-		"company":      "co",
+		"limited":              "ltd",
+		"incorporated":         "inc",
+		"corporation":          "corp",
+		"company":              "co",
+		"publiclimitedcompany": "plc",
+		"publimitedcompany":    "plc",
+		"pvtlimited":           "pvtltd",
+		"privatelimited":       "pvtltd",
+		"privateltd":           "pvtltd",
+		"colimited":            "coltd",
 	},
 	"AT": map[string]string{
 		"gesmbh":                             "gmbh",

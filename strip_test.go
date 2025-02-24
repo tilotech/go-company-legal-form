@@ -182,6 +182,58 @@ func TestStripMiddle(t *testing.T) {
 	}
 }
 
+func TestStripThenAlias(t *testing.T) {
+	cases := []struct {
+		input                  string
+		country                string
+		expectedCompanyName    string
+		expectedLegalForm      string
+		expectedAliasLegalForm string
+	}{
+		{
+			input:                  "Example Shipping Private Limited",
+			country:                "TH",
+			expectedCompanyName:    "Example Shipping",
+			expectedLegalForm:      "Private Limited",
+			expectedAliasLegalForm: "pvtltd",
+		},
+		{
+			input:                  "Example Shipping Pvt Limited",
+			country:                "TH",
+			expectedCompanyName:    "Example Shipping",
+			expectedLegalForm:      "Pvt Limited",
+			expectedAliasLegalForm: "pvtltd",
+		},
+		{
+			input:                  "Example Shipping Pvt Ltd",
+			country:                "TH",
+			expectedCompanyName:    "Example Shipping",
+			expectedLegalForm:      "Pvt Ltd",
+			expectedAliasLegalForm: "pvtltd",
+		},
+		{
+			input:                  "Example Shipping Private Ltd",
+			country:                "TH",
+			expectedCompanyName:    "Example Shipping",
+			expectedLegalForm:      "Private Ltd",
+			expectedAliasLegalForm: "pvtltd",
+		},
+	}
+
+	for i, c := range cases {
+		t.Run(fmt.Sprintf("#%v", i), func(t *testing.T) {
+			actualCompany, actualLegalForm := legalform.Default.Strip(c.input)
+			actualAliasLegalForm := legalform.DefaultAliases.Find("TH", actualLegalForm)
+			fmt.Println(c.input)
+			fmt.Println(actualCompany, "-", actualLegalForm, "-", actualAliasLegalForm)
+			fmt.Println(c.expectedCompanyName, "-", c.expectedLegalForm, "-", c.expectedAliasLegalForm)
+			assert.Equal(t, c.expectedCompanyName, actualCompany)
+			assert.Equal(t, c.expectedLegalForm, actualLegalForm)
+			assert.Equal(t, c.expectedAliasLegalForm, actualAliasLegalForm)
+		})
+	}
+}
+
 func BenchmarkStrip(b *testing.B) {
 	input := "Some Example S. A. de C. V., F. I. en I. D."
 	for i := 0; i < b.N; i++ {
