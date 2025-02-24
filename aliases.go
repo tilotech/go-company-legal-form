@@ -39,6 +39,8 @@ var DefaultAliases = Aliases{
 		"pvtlimited":           "pvtltd",
 		"privatelimited":       "pvtltd",
 		"privateltd":           "pvtltd",
+		"companylimited":       "coltd",
+		"companyltd":           "coltd",
 		"colimited":            "coltd",
 	},
 	"AT": map[string]string{
