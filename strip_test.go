@@ -70,6 +70,11 @@ func TestStrip(t *testing.T) {
 			expectedLegalForm:   "",
 		},
 		{
+			input:               "Foo A Example",
+			expectedCompanyName: "Foo A Example",
+			expectedLegalForm:   "",
+		},
+		{
 			input:               "LLC",
 			expectedCompanyName: "LLC",
 			expectedLegalForm:   "",
@@ -153,6 +158,11 @@ func TestStripMiddle(t *testing.T) {
 		{
 			input:               "LLC Example",
 			expectedCompanyName: "LLC Example",
+			expectedLegalForm:   "",
+		},
+		{
+			input:               "Foo A Example",
+			expectedCompanyName: "Foo A Example",
 			expectedLegalForm:   "",
 		},
 		{

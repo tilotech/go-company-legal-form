@@ -60,13 +60,15 @@ func (f LegalForms) StripMiddle(fullName string) (string, string, string) {
 		legalFormTokenStart := len(tokens) - legalFormTokenLength - obsoleteTokenLength
 		foundLegalForm := legalFormTokenStart <= i
 		if foundLegalForm {
-			company := strings.Join(tokens[0:legalFormTokenStart], " ")
 			legalForm := strings.Join(tokens[legalFormTokenStart:searchEndIdx], " ")
-			other := ""
-			if obsoleteTokenLength > 0 {
-				other = strings.Join(tokens[i+1:], " ")
+			if len(legalForm) > 1 {
+				company := strings.Join(tokens[0:legalFormTokenStart], " ")
+				other := ""
+				if obsoleteTokenLength > 0 {
+					other = strings.Join(tokens[i+1:], " ")
+				}
+				return company, legalForm, other
 			}
-			return company, legalForm, other
 		}
 	}
 	return strings.Join(tokens, " "), "", ""
