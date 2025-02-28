@@ -192,38 +192,45 @@ func TestStripThenAlias(t *testing.T) {
 	}{
 		{
 			input:                  "Example Shipping Private Limited",
-			country:                "TH",
+			country:                "XX",
 			expectedCompanyName:    "Example Shipping",
 			expectedLegalForm:      "Private Limited",
 			expectedAliasLegalForm: "pvtltd",
 		},
 		{
 			input:                  "Example Shipping Pvt Limited",
-			country:                "TH",
+			country:                "XX",
 			expectedCompanyName:    "Example Shipping",
 			expectedLegalForm:      "Pvt Limited",
 			expectedAliasLegalForm: "pvtltd",
 		},
 		{
 			input:                  "Example Shipping Pvt Ltd",
-			country:                "TH",
+			country:                "XX",
 			expectedCompanyName:    "Example Shipping",
 			expectedLegalForm:      "Pvt Ltd",
 			expectedAliasLegalForm: "pvtltd",
 		},
 		{
 			input:                  "Example Shipping Private Ltd",
-			country:                "TH",
+			country:                "XX",
 			expectedCompanyName:    "Example Shipping",
 			expectedLegalForm:      "Private Ltd",
 			expectedAliasLegalForm: "pvtltd",
+		},
+		{
+			input:                  "The example Corp. kk",
+			country:                "JP",
+			expectedCompanyName:    "The example",
+			expectedLegalForm:      "Corp. kk",
+			expectedAliasLegalForm: "kk",
 		},
 	}
 
 	for i, c := range cases {
 		t.Run(fmt.Sprintf("#%v", i), func(t *testing.T) {
 			actualCompany, actualLegalForm := legalform.Default.Strip(c.input)
-			actualAliasLegalForm := legalform.DefaultAliases.Find("UNKNOWN", actualLegalForm)
+			actualAliasLegalForm := legalform.DefaultAliases.Find(c.country, actualLegalForm)
 			assert.Equal(t, c.expectedCompanyName, actualCompany)
 			assert.Equal(t, c.expectedLegalForm, actualLegalForm)
 			assert.Equal(t, c.expectedAliasLegalForm, actualAliasLegalForm)

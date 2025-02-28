@@ -150,19 +150,54 @@ var DefaultAliases = Aliases{
 		"socnomcollectif":                        "snc",
 	},
 	"RU": map[string]string{
+		"обществосограниченнойответственностью": "ooo",
+		"публичноеакционерноеобщество":          "pao",
+		"закрытоеакционерноеобщество":           "ao",
+		"открытоеакционерноеобщество":           "pao",
+		"государственноеунитарноепредприятие":   "gup",
+		"муниципальноеунитарноепредприятие":     "mup",
+		"ооо":                 "ooo",
+		"пао":                 "pao",
+		"oao":                 "pao",
+		"оао":                 "pao",
+		"зао":                 "ao",
+		"акционерноеобщество": "ao",
+		"ао":                  "ao",
+		"zao":                 "ao",
+		"полноетоварищество":  "pt",
+		"пт":                  "pt",
+		"гуп":                 "gup",
+		"муп":                 "mup",
+		"товариществонавере":  "tv",
+		"тв":                  "tv",
+
+		// No diacritics
+		"обществосограниченноиответственностью": "ooo",
+
+		// Already translated
+		"limitedliabilitycompany":     "ooo",
+		"ltdliabilityco":              "ooo",
+		"limited":                     "ooo",
+		"ltd":                         "ooo",
+		"companylimited":              "ooo",
+		"companyltd":                  "ooo",
+		"colimited":                   "ooo",
+		"coltd":                       "ooo",
+		"llc":                         "ooo",
 		"stateunitaryenterprise":      "gup",
 		"generalpartnership":          "pt",
-		"llc":                         "ooo",
-		"ооо":                         "ooo",
+		"limitedpartnership":          "kt",
+		"municipalunitaryenterprise":  "mup",
+		"jsc":                         "ao",
+		"cjsc":                        "ao", // replaced by jsc
 		"pjsc":                        "pao",
+		"ojsc":                        "pao", // replaced by pjsc
+		"gp":                          "pt",
+		"lp":                          "tv",
 		"productioncooperative":       "pk",
 		"businesspartnership":         "khp",
 		"limitedliabilitypartnership": "too",
 		"llp":                         "too",
-		"limitedpartnership":          "kt",
-		"jsc":                         "ao",
-		"cjsc":                        "zao",
-		"municipalunitaryenterprise":  "mup",
 	},
 	"SG": map[string]string{
 		"limited":                     "ltd",
@@ -789,5 +824,110 @@ var DefaultAliases = Aliases{
 		"sociedadporaccionessimplificada": "sas",
 		"sociedadencomanditasimple":       "scs",
 		"sociedadcooperativa":             "scoop",
+	},
+	"VN": map[string]string{
+		"côngtytráchnhiệmhữuhạn": "llc",
+		"côngtytnhh":             "llc",
+		"congtnhh":               "llc",
+		"cttnhh":                 "llc",
+		"ctytnhh":                "llc",
+		"côngtycổphần":           "jsc",
+		"côngtycp":               "jsc",
+		"ctycp":                  "jsc",
+		"ctcp":                   "jsc",
+		"tổngcôngty":             "gc",
+		"doanhnghiệptưnhân":      "pe",
+		"dntn":                   "pe",
+		"côngtyhợpdanh":          "pc",
+		"côngtyhd":               "pc",
+		"côngtyliêndoanh":        "jvc",
+		"côngtyld":               "jvc",
+		"côngtynhànước":          "soc",
+		"côngtynn":               "soc",
+
+		// No diacritics
+		"congtycp":               "jsc",
+		"tongcongty":             "gc",
+		"congtyld":               "jvc",
+		"doanhnghieptunhan":      "pe",
+		"congtyhd":               "pc",
+		"congtyliendoanh":        "jvc",
+		"congtycophan":           "jsc",
+		"congtyhopdanh":          "pc",
+		"congtynhanuoc":          "soc",
+		"congtytrachnhiemhuuhan": "llc",
+		"congtytnhh":             "llc",
+		"congtynn":               "soc",
+
+		// Already translated
+		"limitedliabilitycompany": "llc",
+		"ltdliabilityco":          "llc",
+		"limited":                 "llc",
+		"ltd":                     "llc",
+		"companylimited":          "llc",
+		"companyltd":              "llc",
+		"colimited":               "llc",
+		"coltd":                   "llc",
+	},
+	"JP": map[string]string{
+		"株式会社":  "kk",  // Joint-stock Company(jsc) kabushiki kaisha(kk)
+		"株":     "kk",  // Joint-stock Company(jsc) kabushiki kaisha(kk)
+		"有限会社":  "kk",  // Limited Company(ltd) - yūgen kaisha(yk) (Old form replaced with kk)
+		"有":     "kk",  // Limited Company(ltd) - yūgen kaisha(yk) (Old form replaced with kk)
+		"合同会社":  "gk",  // Limited Liability Company(llc) - gōdō kaisha(gk)
+		"合":     "gk",  // Limited Liability Company(llc) - gōdō kaisha(gk)
+		"合名会社":  "gmk", // General Partnership Company(gp) - gōmei kaisha(gmk)
+		"名":     "gmk", // General Partnership Company(gp) - gōmei kaisha(gmk)
+		"合資会社":  "gsk", // Limited Partnership Company(lp) - gōshi kaisha(gsk)
+		"資":     "gsk", // Limited Partnership Company(lp) - gōshi kaisha(gsk)
+		"外国会社等": "外",   // Foreign Company, etc.
+		"その他":   "そ",   // Others
+		"医療法人":  "医",   // Medical Corporation(mc) - iryō hōjin(ih)
+
+		// detected but no alias
+		//"その他の設立登記法人": "-", // Other Registered Corporations
+		//"地方公共団体":     "-", // Local Public Entity
+		//"国の機関":       "-", // National Agency
+
+		// romaji (japanese)
+		"kabushikikaisha": "kk",
+		"gōdōkaisha":      "gk",
+		"godokaisha":      "gk",
+		"yūgenkaisha":     "kk",
+		"yugenkaisha":     "kk",
+		"gōshikaisha":     "gsk",
+		"goshikaisha":     "gsk",
+		"gomeikaisha":     "gmk",
+		"gōmeikaisha":     "gmk",
+
+		// pinyin (chinese)
+		"zhūshìhuìshè":  "kk",
+		"zhushihuishe":  "kk",
+		"hétónghuìshè":  "gk",
+		"hetonghuishe":  "gk",
+		"yǒuxiànhuìshè": "kk",
+		"youxianhuishe": "kk",
+		"hézīhuìshè":    "gsk",
+		"hezihuishe":    "gsk",
+		"hémínghuìshè":  "gmk",
+		"heminghuishe":  "gmk",
+
+		// Already translated
+		"limitedliabilitycompany": "gk",
+		"ltdliabilityco":          "gk",
+		"llc":                     "gk",
+		"ltd":                     "kk",
+		"companylimited":          "kk",
+		"companyltd":              "kk",
+		"colimited":               "kk",
+		"coltd":                   "kk",
+		"limited":                 "kk",
+		"incorporated":            "kk",
+		"inc":                     "kk",
+		"corporation":             "kk",
+		"corp":                    "kk",
+		"corpinc":                 "kk",
+		"corpkk":                  "kk",
+		"corpyk":                  "kk",
 	},
 }
