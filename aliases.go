@@ -885,9 +885,9 @@ var DefaultAliases = Aliases{
 		"医療法人":  "医",   // Medical Corporation(mc) - iryō hōjin(ih)
 
 		// detected but no alias
-		//"その他の設立登記法人": "-", // Other Registered Corporations
-		//"地方公共団体":     "-", // Local Public Entity
-		//"国の機関":       "-", // National Agency
+		// "その他の設立登記法人": "-", // Other Registered Corporations
+		// "地方公共団体":     "-", // Local Public Entity
+		// "国の機関":       "-", // National Agency
 
 		// romaji (japanese)
 		"kabushikikaisha": "kk",
