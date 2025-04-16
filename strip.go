@@ -2,6 +2,8 @@ package legalform
 
 import (
 	"strings"
+
+	"github.com/tilotech/go-phonetics/diacrit"
 )
 
 // Strip strips the legal form from the end of the full company name and returns the plain
@@ -10,13 +12,18 @@ func (f LegalForms) Strip(fullName string) (string, string) {
 	tokens := strings.Fields(fullName)
 
 	cleanTokens := make([]string, len(tokens))
+	normalizedTokens := make([]string, len(tokens))
 	currentTokenLength := 0
 	legalFormTokenLength := 0
 
-	for i := len(tokens) - 1; i > 0; i-- {
+	for i, t := range tokens {
+		normalizedTokens[i] = diacrit.Normalize(t)
+	}
+
+	for i := len(normalizedTokens) - 1; i > 0; i-- {
 		currentTokenLength++
-		cleanTokens[i] = clean(tokens[i])
-		tokenSearch := strings.Join(cleanTokens[len(tokens)-currentTokenLength-legalFormTokenLength:], "")
+		cleanTokens[i] = clean(normalizedTokens[i])
+		tokenSearch := strings.Join(cleanTokens[len(normalizedTokens)-currentTokenLength-legalFormTokenLength:], "")
 		if _, ok := f[tokenSearch]; ok {
 			legalFormTokenLength += currentTokenLength
 			currentTokenLength = 0
@@ -39,7 +46,7 @@ func (f LegalForms) StripMiddle(fullName string) (string, string, string) {
 	cleanTokens := make([]string, len(tokens))
 
 	for i := range tokens {
-		cleanTokens[i] = clean(tokens[i])
+		cleanTokens[i] = clean(diacrit.Normalize(tokens[i]))
 	}
 
 	for i := len(tokens) - 1; i > 0; i-- {

@@ -8,6 +8,14 @@ github.com/pmezard/go-difflib/difflib
 ## explicit; go 1.17
 github.com/stretchr/testify/assert
 github.com/stretchr/testify/assert/yaml
+# github.com/tilotech/go-phonetics v1.1.0
+## explicit; go 1.23.0
+github.com/tilotech/go-phonetics/diacrit
+# golang.org/x/text v0.21.0
+## explicit; go 1.18
+golang.org/x/text/runes
+golang.org/x/text/transform
+golang.org/x/text/unicode/norm
 # gopkg.in/yaml.v3 v3.0.1
 ## explicit
 gopkg.in/yaml.v3
