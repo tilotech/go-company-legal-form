@@ -20,6 +20,11 @@ func TestStrip(t *testing.T) {
 			expectedLegalForm:   "LLC",
 		},
 		{
+			input:               "Example Spółka z ograniczoną odpowiedzialnością",
+			expectedCompanyName: "Example",
+			expectedLegalForm:   "Spółka z ograniczoną odpowiedzialnością",
+		},
+		{
 			input:               "Example GmbH & Co. KG",
 			expectedCompanyName: "Example",
 			expectedLegalForm:   "GmbH & Co. KG",
@@ -154,6 +159,12 @@ func TestStripMiddle(t *testing.T) {
 			expectedCompanyName: "Example LLC",
 			expectedLegalForm:   "GmbH & Co. KG",
 			expectedOther:       "Some Street Name No 1",
+		},
+		{
+			input:               "Example Spółka z ograniczoną odpowiedzialnością and other",
+			expectedCompanyName: "Example",
+			expectedLegalForm:   "Spółka z ograniczoną odpowiedzialnością",
+			expectedOther:       "and other",
 		},
 		{
 			input:               "LLC Example",
