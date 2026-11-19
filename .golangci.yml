@@ -68,6 +68,13 @@ linters:
         text: should have a package comment
       - path: (.+)\.go$
         text: package comment should be of the form
+      # Legacy lookup tables: only the version 1 normalizers of go-etm use
+      # them, version 2 keeps this logic in go-etm itself. They repeat the
+      # canonical legal forms on purpose and stay as they are, without any
+      # change in behaviour, so goconst does not check them.
+      - path: ^(aliases|legalforms)\.go$
+        linters:
+          - goconst
     paths:
       - third_party$
       - builtin$
